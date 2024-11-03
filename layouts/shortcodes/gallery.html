@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script>
+    lightbox.option({
+        'wrapAround': true,
+        'alwaysShowNavOnTouchDevices': true,
+        'disableScrolling': true,
+        'albumLabel': ""
+    })
+</script>
+
+{{ $image := (.Page.Resources.ByType "image") }}
+{{ with $image }}
+    {{ range . }}
+    {{ $resized := .Resize "800x" }}
+    <a href="{{ .Permalink }}" data-lightbox="x"><img src="{{ $resized.Permalink }}" style="border-radius: 8px; padding-bottom: 2rem" /></a>
+    {{ end }}
+{{ end }}
